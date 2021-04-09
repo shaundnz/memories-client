@@ -13,6 +13,32 @@ const Post = ({post, setCurrentId}) => {
 
     const dispatch = useDispatch()
 
+    const likePost = () => {
+        dispatch(likePostActionCreator(post._id))
+        console.log("liking post")
+        let currentLikedPosts = localStorage.getItem("likedPosts")
+        if (currentLikedPosts) {
+            currentLikedPosts = JSON.parse(currentLikedPosts)
+            currentLikedPosts.push(post._id)
+        } else {
+            currentLikedPosts = [post._id]
+        }
+        console.log(currentLikedPosts)
+        localStorage.setItem("likedPosts", JSON.stringify(currentLikedPosts))
+    }
+
+    const isButtonDisabled = () => {
+        let currentLikedPosts = localStorage.getItem("likedPosts")
+        if (currentLikedPosts === null) {
+            return false
+        }
+        currentLikedPosts = JSON.parse(currentLikedPosts)
+        if (currentLikedPosts.includes(post._id)){
+            return true
+        }
+        return false
+    }
+
     return (
         <Card className={classes.card}>
             <CardMedia className={classes.media} image={post.selectedFile} title={post.title}/>
@@ -33,7 +59,7 @@ const Post = ({post, setCurrentId}) => {
                 <Typography variant="body2" color="textSecondary">{post.message}</Typography>
             </CardContent>
             <CardActions className={classes.cardActions}>
-                <Button size="small" color="primary" onClick={() => dispatch(likePostActionCreator(post._id))}>
+                <Button size="small" color="primary" disabled={isButtonDisabled()} onClick={() => likePost()}>
                     <ThumbUpAltIcon fontSize="small" />
                     Like {post.likeCount}
                 </Button>
