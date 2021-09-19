@@ -24,7 +24,6 @@ const App = () => {
                 <Typography className={classes.heading} variant="h2" align="center">Memories</Typography>
                 <img className={classes.image} src={memories} alt="memories" height="60" />
             </AppBar>
-            This is some changes made that need to be deployed
             <Grow in>
                 <Container>
                     <Grid container className={classes.mainContainer} justify="space-between" alignItems="stretch" spacing={3}>
