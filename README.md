@@ -4,3 +4,7 @@ A small CRUD social media application that allows users to post memories. Reques
 Hosted on Heroku: https://mem-project-client.herokuapp.com/
 
 Built with React, Redux and Material UI.
+
+## Server
+Github Repo: https://github.com/shaundnz/memories-server/
+Link: https://mem-project.herokuapp.com
